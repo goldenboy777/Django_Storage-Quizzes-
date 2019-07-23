@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+  {{ board.name }} - {{ block.super }}
+{% endblock %}
+
+
+{% block stylesheet %}
+  <link rel="stylesheet" href="{% static 'css/app.css' %}">
+{% endblock %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'home' %}">Boards</a></li>
+  <li class="breadcrumb-item active"><a href="{% url 'board_documents' board.pk %}">{{ board.name }}</a></li>
+  <li class="breadcrumb-item active">{{ subject.name }}</li>
+{% endblock %}
+
+{% block content %}
+    <h4>Attention moderator!!! your job is to review all these documents as appropriate for the students to see.</h4>   
+  
+  	<table class="table table-striped" rules="cols" style="text-align:center;">
+      <thead class="thead-dark">
+      <tr>
+        <th>Name of the Document : </th>
+        <th>Uploaded at : </th>
+        <th>Uploaded by : </th>
+        <th colspan="2">Appropriate???</th>
+      </tr>
+    </thead>
+
+    <tbody>
+    {% for obj in documents %}
+    {% if obj.subject == subject and obj.is_reviewed == False and obj.document %}
+      <tr>
+        <td><a href="{{ obj.document.url  }}">{{ obj.name}}</a> </td>  
+        <td>{{ obj.uploaded_at }}</td>
+        <td>{{ obj.uploaded_by }}</td>
+          
+       <form  method="POST"  type="multipart/form-data">
+       {% csrf_token %}
+
+       <input name="Y" id="Y" value="{{ obj.pk }}" type="hidden" />
+       <td><button type="submit" class="btn btn-success">Yes</button></td>
+     </form>
+      <form  method="POST">
+       {% csrf_token %}
+       <input name="N" id="N" value="{{ obj.pk }}" type="hidden" />
+       <td><button type="submit" class="btn btn-success" >No</button></td>
+      </form>
+    {% endif %}
+    {% endfor %}
+  </tr>
+  </tbody>
+</table>
+  
+{% endblock %}
