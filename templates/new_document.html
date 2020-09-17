@@ -22,9 +22,9 @@
    <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    Ready to upload <button type="button" class="btn btn-dark">Upload</button>
+    Ready to upload <button type="submit" class="btn btn-dark">Upload</button>
   </form>
    </div>
     </div>
-  <p><a href="{% url 'home' %}">Return to home</a></p>
+  <p style="text-align: center; font-size: 2em"><a href="{% url 'home' %}">Return to home</a></p>
 {% endblock %}

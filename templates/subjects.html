@@ -27,7 +27,7 @@
       <tbody>
       {% for subject,i in subjects %}
         {% if subject.board == board %}
-        <tr>
+        <tr class="zone">
           <td><a href="{% url 'subjects' board.pk subject.pk %}">{{ subject.name }}</a>  &emsp;
           {% if user.is_moderator and i.count %}
             <img src="{% static 'img/horn.png' %}">

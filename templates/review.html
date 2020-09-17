@@ -18,7 +18,7 @@
 {% endblock %}
 
 {% block content %}
-    <h4>Attention moderator!!! your job is to review all these documents as appropriate for the students to see.</h4>   
+    <h4 style="color:red;">Attention moderator!!! your job is to review all these documents as appropriate for the students to see.</h4>   
   
   	<table class="table table-striped" rules="cols" style="text-align:center;">
       <thead class="thead-dark">
@@ -35,8 +35,8 @@
     {% if obj.subject == subject and obj.is_reviewed == False and obj.document %}
       <tr>
         <td><a href="{{ obj.document.url  }}">{{ obj.name}}</a> </td>  
-        <td>{{ obj.uploaded_at }}</td>
-        <td>{{ obj.uploaded_by }}</td>
+        <td style="color:white;">{{ obj.uploaded_at }}</td>
+        <td style="color:white;">{{ obj.uploaded_by }}</td>
           
        <form  method="POST"  type="multipart/form-data">
        {% csrf_token %}

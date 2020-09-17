@@ -11,16 +11,14 @@
 {% endblock %}
 
 
+
 {% block content %}
   <table class="table">
     <thead class="thead-inverse">
-      <tr>
-        <th>Board</th>
-      </tr>
     </thead>
     <tbody>
       {% for board in boards %}
-        <tr>
+        <tr class="zone">
           <td>
             <a href="{% url 'board_documents' board.pk %}">{{ board.name }}</a>
           </td>

@@ -28,7 +28,7 @@
   {% endif %}
     
   	<table class="table table-striped" style="text-align:center;">
-    <thead class="thead-inverse">
+    <thead class="thead-dark">
       <tr>
         <th>Name of the Document : </th>
         <th>Uploaded at : </th>
@@ -38,9 +38,9 @@
       <tbody>
     {% for obj in documents %}
       {%if obj.is_reviewed and obj.subject == subject %}
-      <tr>
+      <tr class="zone">
        <td> <a href="{{ obj.document.url }}">{{ obj.name }}</a></td>
-       <td> <small>{{ obj.uploaded_at }}</small></td>
+       <td style="color:white;"> <small>{{ obj.uploaded_at }}</small></td>
       </tr>
       {% endif %}
     {% endfor %}
